@@ -10,16 +10,17 @@
 </header>
 
 <div class="container">
+  <div class="sidebar">
+    <p>Dexterity: {$state.stats.dex}</p>
+    <p>Strength: {$state.stats.str}</p>
+    <span>Charm: {$state.stats.cha}</span>
+    <span>Rations: {$state.stats.rat}</span>
+  </div>
   <div class="section">
     <slot />
   </div>
 
   <footer>
-    <p>Dexterity: {$state.stats.dex}</p>
-    <p>Strength: {$state.stats.str}</p>
-    <span>Charm: {$state.stats.cha}</span>
-    <span>Rations: {$state.stats.rat}</span>
-
     {#if $current_page_name === `Inventory`}
       <span class="currently_on">Inventory</span>
     {:else}
@@ -34,10 +35,16 @@
 
 <style>
   .container {
-    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .section {
     display: flex;
     flex-direction: column;
+    gap: 16px;
     justify-content: space-between;
+    overflow: hidden;
 
     max-width: 800px;
     margin-left: auto;
@@ -51,14 +58,16 @@
     --gray: #939393;
   }
 
-  .section {
+  .sidebar {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-  }
-
-  .character-sheet {
-    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 15vw;
+    background-color: #939393;
+    margin-right: 10vw;
   }
 
   footer {
