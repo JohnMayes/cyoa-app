@@ -5,17 +5,20 @@
   export let Link, state, current_page_name;
 </script>
 
+<header>
+  <h1>Treasures of the Cursed Pyramid</h1>
+</header>
+
 <div class="container">
   <div class="section">
     <slot />
   </div>
 
   <footer>
-    {#if $current_page_name === `Score`}
-      <span class="currently_on">Score</span>
-    {:else}
-      <Link to="Score">Score</Link>
-    {/if}
+    <p>Dexterity: {$state.stats.dex}</p>
+    <p>Strength: {$state.stats.str}</p>
+    <span>Charm: {$state.stats.cha}</span>
+    <span>Rations: {$state.stats.rat}</span>
 
     {#if $current_page_name === `Inventory`}
       <span class="currently_on">Inventory</span>
@@ -64,6 +67,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  h1 {
+    margin: 2rem;
+    text-align: center;
   }
 
   .currently_on {
